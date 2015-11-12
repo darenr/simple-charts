@@ -1,1 +1,1 @@
-python -m SimpleHTTPServer
+ python server.py drace.us.oracle.com

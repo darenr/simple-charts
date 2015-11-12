@@ -11,34 +11,56 @@
 
   <script type="text/javascript" src="//benpickles.github.io/peity/jquery.peity.min.js"></script>
 
+
+  <style>
+    .peity {
+      display: block;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 
 <body>
 
   <div class="container">
 
-    <h1>Distibution test</h1>        
+    <h1>Distributions</h1>        
 
-    <div class="well">
-      <span class="bar"></span>
-    </div>
+    <ul id="graph-content"></div.
+    
 
   </div>
 
 <script type="text/javascript">
 
+  $.fn.peity.defaults.bar = {
+    delimiter: ",",
+    fill: ["blue"],
+    height: 45,
+    padding: 0.1,
+    width: 500
+  }
+
   $( document ).ready(function() {
 
-    $.getJSON( "data.json", function( data ) {
-      $(".bar").html("1,2,3,5,2,3,5,2,3,5,2,3,5");
-      $(".bar").change();
+    $.getJSON("data.json", function(result) {
+      $.each(result, function(index, data) {
+
+        arr = data.map(function(d) { 
+          return d[1]; 
+        });
+
+        $("<li/>", {
+          "class": "bar",
+          html: arr.join(",")
+        }).appendTo("#graph-content");
+
+      });
+
+      $(".bar").peity("bar");
+
     });
 
-      $(".bar").peity("bar", {
-        height: 40,
-        width: 100,
-        fill: ["blue"]
-      });
   });
 
 </script>
