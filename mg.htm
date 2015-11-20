@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript" src="lib/metricsgraphics.min.js"></script>
+  <link rel="stylesheet" href="lib/metricsgraphics.css">
+
+
+  <style>
+    .peity {
+      display: block;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>Distributions:</h1>        
+
+    <ul id="graph-content"></div.
+    
+
+  </div>
+
+<script type="text/javascript">
+
+
+  $( document ).ready(function() {
+
+    $.getJSON("mg.json", function(result) {
+      $.each(result, function(index, data) {
+
+        switch(data["type"]) {
+          case 'string': {
+            $("<li/>", {
+              "class": data["type"],
+              html: "<h3>" + data["name"] + "</h3>" + data["data"]["_c0"] + " libinct values"
+            }).appendTo("#graph-content");
+            break;
+          }
+          case 'integer':
+          case 'double': {
+            $("<li/>", {
+              "id": data["name"],
+              "class": data["type"],
+              html: "<h3>" + data["name"] + "</h3>"
+            }).appendTo("#graph-content");
+
+            MG.data_graphic({
+              data: data["data"]["_c0"],
+              width: 600,
+              height: 150,
+              target: "#" + data["name"],
+              animate_on_load: true,
+              x_accessor: "x",
+              y_accessor: "y",
+              color: '#1A237E',
+              interpolate: "step",
+              binned: true,
+              bins: data["data"]["_c0"].length,
+              chart_type: "histogram",
+            });
+            break;
+          }
+        }
+
+
+      });
+
+    });
+
+  });
+
+</script>
+
+</body>
+</html>
