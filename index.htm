@@ -3,20 +3,27 @@
 <head>
 
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-
   <script type="text/javascript" src="//benpickles.github.io/peity/jquery.peity.min.js"></script>
 
 
   <style>
-    .peity {
-      display: block;
-      margin-bottom: 20px;
+    body {
+      background-color: white;
+      color: #4a148c;
     }
+
+    li {
+      list-style: none;
+      padding-bottom: 25px;
+    }
+
+    .peity {
+      margin-left: 225px;
+      display: inline;
+    }
+
   </style>
 </head>
 
@@ -35,7 +42,7 @@
 
   $.fn.peity.defaults.bar = {
     delimiter: ",",
-    fill: ["blue"],
+    fill: ["#4a148c"],
     height: 45,
     padding: 0.09,
     width: 400
@@ -43,17 +50,20 @@
 
   $( document ).ready(function() {
 
-    $.getJSON("data.json", function(result) {
+    $.getJSON("mg.json", function(result) {
       $.each(result, function(index, data) {
 
-        arr = data.map(function(d) { 
-          return d[1]; 
-        });
-
-        $("<li/>", {
-          "class": "bar",
-          html: arr.join(",")
-        }).appendTo("#graph-content");
+        switch(data["type"]) {
+          case 'integer':
+          case 'double': {
+            arr = data["data"]["_c0"].map(function(d) { return d['y']; });
+            $("<li/>", {
+              "id": data["name"],
+              "class": "well",
+              html: "<h2><span class='label label-primary'>" + data["name"] + "</span></h2><span class='bar'>" + arr.join(",") + "</span>"
+            }).appendTo("#graph-content");
+          }
+        }
 
       });
 
