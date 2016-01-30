@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Markers on the world map</title>
+
+  <!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" media="all" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" media="all" href="/css/jquery-jvectormap-2.0.3.css" />
+
+  <script src="/js/jquery-latest.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/jquery-jvectormap-2.0.3.min.js"></script>
+  <script src="/js/jquery-jvectormap-world-mill-en.js"></script>
+<!--
+  <script src="/js/jquery-jvectormap-us-lcc-en.js"></script>
+-->
+
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+
+
+<body lang="en">
+  <header>
+    <div class="container">
+
+      <div id="row">
+
+        <figure>
+          <div id="world-map-markers" style="width: 100%; height: 700px"></div>
+
+          <script>
+            $(function() {
+              $('#world-map-markers').vectorMap({
+                map: 'world_mill_en',
+//                map: 'us_lcc_en',
+                scaleColors: ['#C8EEFF', '#0071A4'],
+                normalizeFunction: 'polynomial',
+                hoverOpacity: 0.7,
+                hoverColor: false,
+                markerStyle: {
+                  initial: {
+                    fill: '#F8E23B',
+                    stroke: '#383f47'
+                  }
+                },
+                backgroundColor: 'green',
+                markers: [{
+                  latLng: [37.5, -122.5]
+                }, {
+                  latLng: [43.73, -100.41]
+                }, {
+                  latLng: [45.52, -125.93]
+                }, {
+                  latLng: [40.51, -119.21]
+                }]
+              });
+            });
+          </script>
+        </figure>
+
+</body>
+
+</html>
