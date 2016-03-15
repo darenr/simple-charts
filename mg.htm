@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-  <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="lib/d3.min.js" charset="utf-8"></script>
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
   <script type="text/javascript" src="lib/metricsgraphics.min.js"></script>
@@ -24,9 +24,7 @@
 
   <div class="container">
 
-    <h1>Distributions:</h1>        
-
-    <ul id="graph-content"></div.
+    <div id="graph-content"></div>
     
 
   </div>
@@ -63,7 +61,7 @@
               animate_on_load: true,
               x_accessor: "x",
               y_accessor: "y",
-              color: '#1A237E',
+              color: '#00F',
               interpolate: "step",
               binned: true,
               bins: data["data"]["_c0"].length,
