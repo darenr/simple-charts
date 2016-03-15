@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -41,8 +43,7 @@
 
     $.getJSON("scatter.json", function(data_list) {
       var data = data_list.map(function(i) {
-        console.log(100*i[1]);
-        return {'x': i[0], 'y': 100*i[1]};
+        return {'x': i[0], 'y': 100.0*i[1]};
       });
       MG.data_graphic({
         title: "Standardized Residuals",
@@ -52,17 +53,15 @@
         width: 435,
         height: 280,
         right: 40,
-        left: 80,
+        left: 70,
         bottom: 50,
+        decimals: 2,
+        show_rollover_text: false,
         target: '#scatter-graph',
-        xax_format: function(f) {
-            var pf = d3.formatPrefix(f);
-            return Math.round(pf.scale(f)) + pf.symbol;
-        },
         x_accessor: 'x',
         y_accessor: 'y',
-        x_label: 'actual Sales',
-        y_label: 'residual %'
+        x_label: 'predicted length',
+        y_label: 'residual%'
       });
     });
 

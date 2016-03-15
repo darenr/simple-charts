@@ -1,1 +1,1 @@
- python server.py drace.us.oracle.com
+python server.py

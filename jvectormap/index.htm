@@ -15,9 +15,7 @@
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/jquery-jvectormap-2.0.3.min.js"></script>
   <script src="/js/jquery-jvectormap-world-mill-en.js"></script>
-<!--
-  <script src="/js/jquery-jvectormap-us-lcc-en.js"></script>
--->
+<script src="/js/jquery-jvectormap-us-lcc-en.js"></script>
 
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -37,9 +35,17 @@
 
           <script>
             $(function() {
-              $('#world-map-markers').vectorMap({
-                map: 'world_mill_en',
-//                map: 'us_lcc_en',
+              new jvm.MultiMap({
+                container: $('#world-map-markers'),
+          maxLevel: 1,
+          main: {
+            map: 'us_lcc_en'
+          },
+    mapUrlByCode: function(code, multiMap){
+      return 'js/jquery-jvectormap-data-'+
+             code.toLowerCase()+'-'+
+             multiMap.defaultProjection+'-en.js';
+    },
                 scaleColors: ['#C8EEFF', '#0071A4'],
                 normalizeFunction: 'polynomial',
                 hoverOpacity: 0.7,
@@ -52,7 +58,8 @@
                 },
                 backgroundColor: 'green',
                 markers: [{
-                  latLng: [37.5, -122.5]
+                  latLng: [37.5, -122.5],
+                  'name': "Jie's house"
                 }, {
                   latLng: [43.73, -100.41]
                 }, {
